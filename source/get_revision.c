@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include "get_revision.h"
 
-#define REVISION_FILENAME "/proc/device-tree/system/linux,version"
+#define REVISION_FILENAME "/proc/device-tree/system/linux,revision"
 #define REVISION_SIZE 4
 #define REVISION_OFFSET 1
 
@@ -29,7 +29,7 @@ char* get_cpu_revision(char* buffer)
     size_t limit = REVISION_SIZE - REVISION_OFFSET;
     for (size_t i=0;i<limit;i++)
     {
-        generateReadableRevisionBit(buffer+i, revBuffer + REVISION_OFFSET + i);
+        generateReadableRevisionBit(buffer+i*2, revBuffer + REVISION_OFFSET + i);
     }
 
     return buffer;

@@ -24,6 +24,9 @@ SOFTWARE.
 #include <stdlib.h>
 #include <string.h>
 #include "cpuinfo.h"
+#include "get_revision.h"
+
+#define ASSUME_RPI
 
 int get_rpi_info(rpi_info *info)
 {
@@ -47,7 +50,10 @@ int get_rpi_info(rpi_info *info)
           strcmp(hardware, "BCM2837") == 0 ) {
          found = 1;
       }
-      sscanf(buffer, "Revision	: %s", revision);
+#ifdef ASSUME_RPI
+      found = 1;
+#endif
+      get_cpu_revision(revision);
    }
    fclose(fp);
 
