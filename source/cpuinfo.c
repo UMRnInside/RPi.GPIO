@@ -40,8 +40,7 @@ int get_rpi_info(rpi_info *info)
 
    if ((fp = fopen("/proc/cpuinfo", "r")) == NULL)
       return -1;
-   while(!feof(fp)) {
-      fgets(buffer, sizeof(buffer), fp);
+   while(!feof(fp) && fgets(buffer, sizeof(buffer), fp)) {
       sscanf(buffer, "Hardware	: %s", hardware);
       if (strcmp(hardware, "BCM2708") == 0 ||
           strcmp(hardware, "BCM2709") == 0 ||
@@ -50,6 +49,7 @@ int get_rpi_info(rpi_info *info)
           strcmp(hardware, "BCM2837") == 0 ) {
          found = 1;
       }
+      //sscanf(buffer, "Revision	: %s", revision);
 #ifdef ASSUME_RPI
       found = 1;
 #endif
