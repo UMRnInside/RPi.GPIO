@@ -1,8 +1,21 @@
 Change Log
 ==========
 
+0.6.5
+-----
+- Fix exception on re-export of /sys/class/gpio/gpioNN
+
+0.6.4
+-----
+- Event cleanup bug (issue 145)
+- Raise exception for duplicate PWM objects (issue 54 - Thijs Schreijer <thijs@thijsschreijer.nl>)
+- Fix build warnings (Issue 146 - Dominik George) 
+- test.py runs unchanged for both python 2+3
+- Soft PWM stops running fix (Issues 94, 111, 154)
+- Soft PWM segfault fix (Luke Allen pull request)
+
 0.6.3
--------
+-----
 - Fix code so it builds under PyPy (Gasper Zejn)
 - os.system breaks event detection - Matt Kimball (issue 127)
 
